@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build and Push Docker Image
 
 on:
   push:
@@ -11,8 +11,16 @@ jobs:
      steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: myacrdevops.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
         
-      - name: Build Docker Image  
-        run: docker build -t nginx-demo .
+      - name: Build and Push 
+        run: |
+          docker build -t myacrdevops.azurecr.io/nginx-demo .
+          docker push myacrdevops123.azurecr.io/nginx-demo
     
   
