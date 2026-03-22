@@ -21,6 +21,6 @@ jobs:
       - name: Build and Push 
         run: |
           docker build -t myacrdevops.azurecr.io/nginx-demo .
-          docker push myacrdevops123.azurecr.io/nginx-demo
+          docker push myacrdevops.azurecr.io/nginx-demo
     
   
